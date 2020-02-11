@@ -107,10 +107,9 @@ def check_neighbours(ccr, ccc, maze_map):
 def main():
     """Main"""
     maze_map = [["w" for _ in range(MAZE_SIZE)] for _ in range(MAZE_SIZE)]
-    scr = randint(1, MAZE_SIZE)
-    scc = randint(1, MAZE_SIZE)
+    ccr = randint(1, MAZE_SIZE)
+    ccc = randint(1, MAZE_SIZE)
     start_color = "Green"
-    ccr, ccc = scr, scc
 
     maze_map[ccr][ccc] = "P"
     finished = False
@@ -137,7 +136,7 @@ def main():
     ffs = Canvas(window, width=canvas_side, height=canvas_side, bg="grey")
     ffs.pack()
     create(ffs, maze_map)
-    draw(ffs, scr, scc, start_color)
+    draw(ffs, ccr, ccc, start_color)
     end = randint(1, len(revisited_cells)) - 1
     ecr = revisited_cells[end][0]
     ecc = revisited_cells[end][1]
