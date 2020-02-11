@@ -119,8 +119,8 @@ def main():
     while not finished:
         visitable_neighbours = check_neighbours(ccr, ccc, maze_map)
         if len(visitable_neighbours) != 0:
-            d = randint(1, len(visitable_neighbours)) - 1
-            ncr, ncc = visitable_neighbours[d]
+            digit = randint(1, len(visitable_neighbours)) - 1
+            ncr, ncc = visitable_neighbours[digit]
             maze_map[ncr][ncc] = "P"
             visited_cells.append([ncr, ncc])
             ccr, ccc = ncr, ncc
