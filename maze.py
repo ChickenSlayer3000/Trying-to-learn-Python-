@@ -138,9 +138,9 @@ def main():
     ffs.pack()
     create(ffs, maze_map)
     draw(ffs, scr, scc, start_color)
-    e = randint(1, len(revisited_cells)) - 1
-    ecr = revisited_cells[e][0]
-    ecc = revisited_cells[e][1]
+    end = randint(1, len(revisited_cells)) - 1
+    ecr = revisited_cells[end][0]
+    ecc = revisited_cells[end][1]
     end_color = "red"
     draw(ffs, ecr, ecc, end_color)
     print(revisited_cells)
