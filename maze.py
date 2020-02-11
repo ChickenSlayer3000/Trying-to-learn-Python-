@@ -20,11 +20,11 @@ def create(ffs, maze_map):
 
 def draw(ffs, row, col, color):
     """Draw rectangles"""
-    x1 = col * CELL_SIZE
-    y1 = row * CELL_SIZE
-    x2 = x1 + CELL_SIZE
-    y2 = y1 + CELL_SIZE
-    ffs.create_rectangle(x1, y1, x2, y2, fill=color)
+    x_one = col * CELL_SIZE
+    y_one = row * CELL_SIZE
+    x_two = x_one + CELL_SIZE
+    y_two = y_one + CELL_SIZE
+    ffs.create_rectangle(x_one, y_one, x_two, y_two, fill=color)
 
 
 def check_neighbours(ccr, ccc, maze_map):
