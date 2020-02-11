@@ -92,11 +92,11 @@ def check_neighbours(ccr, ccc, maze_map):
     for i in neighbours:  # find neighbours to visit
         if i[0] > 0 and i[0] < (MAZE_SIZE - 1) and i[1] > 0 and i[1] < (MAZE_SIZE - 1):
             if (
-                maze_map[i[2]][i[3]] == "P"
-                or maze_map[i[4]][i[5]] == "P"
-                or maze_map[i[6]][i[7]] == "P"
-                or maze_map[i[8]][i[9]] == "P"
-                or maze_map[i[10]][i[11]] == "P"
+                    maze_map[i[2]][i[3]] == "P"
+                    or maze_map[i[4]][i[5]] == "P"
+                    or maze_map[i[6]][i[7]] == "P"
+                    or maze_map[i[8]][i[9]] == "P"
+                    or maze_map[i[10]][i[11]] == "P"
             ):
                 walls.append(i[0:2])
             else:
