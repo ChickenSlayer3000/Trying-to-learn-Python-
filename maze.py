@@ -6,16 +6,14 @@ from random import randint
 CELL_SIZE = 9  # pixels
 MAZE_SIZE = 100  # rows and columns
 
-map = [["w" for _ in range(MAZE_SIZE)] for _ in range(MAZE_SIZE)]
 
-
-def create(ffs):
+def create(ffs, maze_map):
     """Check rows and columns and draw stuff"""
     for row in range(MAZE_SIZE):
         for col in range(MAZE_SIZE):
-            if map[row][col] == "P":
+            if maze_map[row][col] == "P":
                 color = "White"
-            elif map[row][col] == "w":
+            elif maze_map[row][col] == "w":
                 color = "black"
             draw(ffs, row, col, color)
 
@@ -29,7 +27,7 @@ def draw(ffs, row, col, color):
     ffs.create_rectangle(x1, y1, x2, y2, fill=color)
 
 
-def check_neighbours(ccr, ccc):
+def check_neighbours(ccr, ccc, maze_map):
     """This function checks neighbours"""
     walls = []
     neighbours = [
@@ -94,11 +92,11 @@ def check_neighbours(ccr, ccc):
     for i in neighbours:  # find neighbours to visit
         if i[0] > 0 and i[0] < (MAZE_SIZE - 1) and i[1] > 0 and i[1] < (MAZE_SIZE - 1):
             if (
-                map[i[2]][i[3]] == "P"
-                or map[i[4]][i[5]] == "P"
-                or map[i[6]][i[7]] == "P"
-                or map[i[8]][i[9]] == "P"
-                or map[i[10]][i[11]] == "P"
+                maze_map[i[2]][i[3]] == "P"
+                or maze_map[i[4]][i[5]] == "P"
+                or maze_map[i[6]][i[7]] == "P"
+                or maze_map[i[8]][i[9]] == "P"
+                or maze_map[i[10]][i[11]] == "P"
             ):
                 walls.append(i[0:2])
             else:
@@ -108,21 +106,22 @@ def check_neighbours(ccr, ccc):
 
 def main():
     """Main"""
+    maze_map = [["w" for _ in range(MAZE_SIZE)] for _ in range(MAZE_SIZE)]
     scr = randint(1, MAZE_SIZE)
     scc = randint(1, MAZE_SIZE)
     start_color = "Green"
     ccr, ccc = scr, scc
 
-    map[ccr][ccc] = "P"
+    maze_map[ccr][ccc] = "P"
     finished = False
     visited_cells = []
     revisited_cells = []
     while not finished:
-        visitable_neighbours = check_neighbours(ccr, ccc)
+        visitable_neighbours = check_neighbours(ccr, ccc, maze_map)
         if len(visitable_neighbours) != 0:
             d = randint(1, len(visitable_neighbours)) - 1
             ncr, ncc = visitable_neighbours[d]
-            map[ncr][ncc] = "P"
+            maze_map[ncr][ncc] = "P"
             visited_cells.append([ncr, ncc])
             ccr, ccc = ncr, ncc
         if len(visitable_neighbours) == 0:
@@ -137,7 +136,7 @@ def main():
     canvas_side = MAZE_SIZE * CELL_SIZE
     ffs = Canvas(window, width=canvas_side, height=canvas_side, bg="grey")
     ffs.pack()
-    create(ffs)
+    create(ffs, maze_map)
     draw(ffs, scr, scc, start_color)
     e = randint(1, len(revisited_cells)) - 1
     ecr = revisited_cells[e][0]
